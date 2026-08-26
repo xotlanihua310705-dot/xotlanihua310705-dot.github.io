@@ -1,437 +1,184 @@
+@@ -0,0 +1,184 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="UTF=8">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Currículum Profesional</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-        }
+<meta charset="UTF-8">
+<title>Mi curriculum</title>
 
-        body {
-            background: #fff;
-            padding: 40px;
-            max-width: 900px;
-            margin: 0 auto;
-            color: #222;
-            line-height: 1.5;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f4f4;
+    color: #333;
+}
 
-        /* --- CABECERA --- */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+/* BANNER ANIMADO*^/
+.banner {
+    height: 200px;
+    background: linar-gradient(-45deg, #1abc9c, #3498db, #9b59b6, #e74c3c);
+    background-size:400% 400%;
+    animation: moviniento 10s ease infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
 
-        .header-left {
-            flex: 1;
-            min-width: 300px;
-        }
+@keyfremes movimiento {
+    0% { background-position: 0% 50%;}
+    50% { background-position: 100% 50%;}
+    100% { background-position: 0% 50%;}
+}
 
-        .header-left h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
+.container {
+     max-width: 900px;
+     margin: -60px auto 40px auto;
+     background: #ffffff;
+     border-radius: 15px;
+     overflow: hidden;
+     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
 
-        .tagline {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.4;
-        }
+/* HEADER */
+header img { 
+     text-alingn: center;
+     padding: 30px;
+     background: #2c3e50;
+     color: white;
+}
 
-        .header-right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 6px;
-            font-size: 0.9rem;
-            color: #444;
-        }
+header img {
+     width: 140px;
+     height: 140px;
+     border-radius: 50%;
+     border: 5px solid white;
+     object-fit: cover;
+}
 
-        .header-right span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+/* NAV */
+nav {
+     background: #2c3e50;
+     text-align: center;
+     padding: 10px;
+}
 
-        .profile-img {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #e63946;
-            margin-bottom: 10px;
-            background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 45px;
-        }
+nav a {
+     color: white;
+     margi9n: 0 10px;
+     text-decoration: none;
+}
 
-        .divider {
-            height: 3px;
-            background: linear-gradient(90deg, #e63946, #1d3557);
-            margin: 15px 0 25px;
-            border-radius: 2px;
-        }
+/* SECCIONES */
+section {
+     padding: 20px 30px;
+     border-bottom: 1px solid #ddd;
 
-        /* --- CONTENEDOR PRINCIPAL --- */
-        .main-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 35px;
-        }
+     opacity: 0;
+     trandform: translateY(40px);
+     transition: all 0.6s ease;
+}
 
-        /* --- SECCIONES --- */
-        section {
-            margin-bottom: 28px;
-        }
+section.visible {
+     opacity: 1;
+     transform: translateY(0);
+}
 
-        h2 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            color: #1d3557;
-            border-bottom: 2px solid #e63946;
-            padding-bottom: 4px;
-            margin-bottom: 14px;
-            letter-spacing: 0.5px;
-        }
+h2 {
+     color: #2c3e50;
+}
 
-        /* --- EXPERIENCIA Y EDUCACIÓN --- */
-        .item {
-            margin-bottom: 18px;
-            position: relative;
-            padding-left: 18px;
-        }
+/* HABILIDADES */
+.skills span {
+     display: inline-block;
+     background: #1abc9c;
+     color: white;
+     padding: 6px 12px;
+     margin: 5px;
+     border-radius: 20px;
+}
 
-        .item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 4px;
-            width: 10px;
-            height: 10px;
-            background: #e63946;
-            border-radius: 2px;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 3px;
-        }
-
-        .item-title {
-            font-weight: 700;
-            font-size: 1rem;
-            color: #1a1a1a;
-        }
-
-        .item-place {
-            font-weight: 500;
-            color: #1d3557;
-            font-size: 0.9rem;
-        }
-
-        .item-date {
-            font-size: 0.85rem;
-            color: #777;
-        }
-
-        .item-desc {
-            font-size: 0.88rem;
-            color: #444;
-            margin-top: 5px;
-        }
-
-        .item-desc ul {
-            list-style: none;
-            padding-left: 12px;
-            margin-top: 3px;
-        }
-
-        .item-desc li::before {
-            content: "•";
-            color: #e63946;
-            font-weight: bold;
-            display: inline-block;
-            width: 10px;
-            margin-left: -10px;
-        }
-
-        /* --- HABILIDADES CON BARRAS --- */
-        .skill {
-            margin-bottom: 10px;
-        }
-
-        .skill-top {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            margin-bottom: 3px;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: #e0e0e0;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #e63946, #ff6b6b);
-            border-radius: 4px;
-            transition: width 0.3s ease;
-        }
-
-        /* --- LOGROS E IDIOMAS --- */
-        .achievements li, .languages li {
-            list-style: none;
-            padding-left: 15px;
-            position: relative;
-            margin-bottom: 6px;
-            font-size: 0.9rem;
-        }
-
-        .achievements li::before, .languages li::before {
-            content: "✓";
-            color: #e63946;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        .interests {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px 12px;
-            font-size: 0.9rem;
-        }
-
-        .interests span {
-            background: #f1faee;
-            padding: 4px 10px;
-            border-radius: 15px;
-            color: #1d3557;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            body { padding: 20px; }
-            .main-container { grid-template-columns: 1fr; }
-            .header-right { align-items: flex-start; margin-top: 15px; }
-        }
-
-        /* --- IMPRESIÓN --- */
-        @media print {
-            body { padding: 0; }
-            .skill-fill { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            .interests span { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        }
-    </style>
+/* FOOTER */
+footer {
+     text-align: cebter;
+     padding: 15px;
+     background: #2c3e50;
+     color: white;
+}
+</style>
 </head>
+
 <body>
 
-    <!-- CABECERA -->
-    <header class="header">
-        <div class="header-left">
-            <h1>TU NOMBRE COMPLETO</h1>
-            <p class="tagline">
-                Estudiante de Ingeniería en Software | Desarrollador apasionado por crear soluciones tecnológicas, 
-                innovar y resolver problemas mediante código. Comprometido, autodidacta y con visión de futuro.
-            </p>
-        </div>
-        <div class="header-right">
-            <div class="profile-img">👤</div>
-            <span>📧 tu.correo@email.com</span>
-            <span>📱 +52 1234 567890</span>
-            <span>📍 Córdoba, Veracruz, México</span>
-            <span>🔗 linkedin.com/in/tu-perfil</span>
-        </div>
-    </header>
+<!-- BANNER -->
+<div class="banner">
+    BIENEVENIDOS A MI CURRICULUM
+</div>
 
-    <div class="divider"></div>
+<div class="cantainer">
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="main-container">
+<header>
+     <h1>LUIS ENRIQUE ZEPAHUA XOTLANIHUA </h1>
+     <p>Estudiante universitarioa UV / Lincenciatura en ingenieria en software </p>
+</header>
 
-        <!-- COLUMNA IZQUIERDA -->
-        <div class="col-left">
+<nav>
+    <a href="#perfi">Perfil</a>
+    <a href="#experiencia">Experiencia</a>
+    <a href="#educacion">Educacion</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#contacto">Contacto</a>
+</nav>
 
-            <!-- EXPERIENCIA -->
-            <section>
-                <h2>Experiencia Laboral</h2>
-                
-                <div class="item">
-                    <div class="item-header">
-                        <span class="item-title">Desarrollador Web Junior</span>
-                        <span class="item-date">Ene 2025 — Actualidad</span>
-                    </div>
-                    <p class="item-place">Empresa / Proyecto Personal</p>
-                    <div class="item-desc">
-                        <ul>
-                            <li>Desarrollo y mantenimiento de sitios web con HTML, CSS y JavaScript.</li>
-                            <li>Optimización de rendimiento y diseño responsive.</li>
-                            <li>Colaboración en equipo con metodologías ágiles.</li>
-                        </ul>
-                    </div>
-                </div>
+<section id="perfil">
+    <h2> Perfil</2>
+    <p>Soy estudiante de programacion y creador de pagians web, soy resposblse y organizado y habil con las computadoras</p>
+</section>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="item-title">Practicante de Programación</span>
-                        <span class="item-date">Jun 2024 — Dic 2024</span>
-                    </div>
-                    <p class="item-place">Empresa / Institución</p>
-                    <div class="item-desc">
-                        <ul>
-                            <li>Apoyo en desarrollo de aplicaciones en Python.</li>
-                            <li>Gestión y consultas de bases de datos SQL.</li>
-                            <li>Documentación de código y manuales de uso.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+<section id="experiencia">
+     <h2>Experiencia</h2>
+     <p><strong>Empresa de google</strong></P>
+</section>
 
-            <!-- EDUCACIÓN -->
-            <section>
-                <h2>Educación</h2>
-                
-                <div class="item">
-                    <div class="item-header">
-                        <span class="item-title">Ingeniería en Software</span>
-                        <span class="item-date">2022 — 2026</span>
-                    </div>
-                    <p class="item-place">Universidad / Instituto Tecnológico</p>
-                    <div class="item-desc">
-                        Formación en desarrollo de software, estructuras de datos, redes, bases de datos y gestión de proyectos tecnológicos.
-                    </div>
-                </div>
+<section id="educacion">
+      <h2>Educacion</h2>
+      <p> UNIVERSIDAD VERACRUZANA </p>
+</section>
 
-                <div class="item">
-                    <div class="item-header">
-                        <span class="item-title">Bachillerato — Área Físico-Matemáticas</span>
-                        <span class="item-date">2019 — 2022</span>
-                    </div>
-                    <p class="item-place">Escuela Preparatoria</p>
-                </div>
-            </section>
+<section id="habilidades" class="skills">
+      <h2>Habilidades</h2>
+      <span>Progtamcion</span>
+      <span>Diseño de pahinas web</span>
+      <span>Dominio del ingles</span>
+</section>
 
-            <!-- LOGROS Y CERTIFICACIONES -->
-            <section>
-                <h2>Logros y Certificaciones</h2>
-                <ul class="achievements">
-                    <li>Certificación en HTML & CSS — Plataforma (2025)</li>
-                    <li>Curso de JavaScript Moderno — Udemy / Coursera</li>
-                    <li>Participación en Hackathon Local — 2do Lugar (2024)</li>
-                    <li>Certificación Git y GitHub — 2025</li>
-                </ul>
-            </section>
+<section id="contacto">
+      <h2>Contacto</h2>
+      <p>Email: xotlanihua310705@gmail.com</p>
+</section>
 
-        </div>
+<footer>
+      <p>2026 - MI CURRICULUM</p>
+</footer>
 
-        <!-- COLUMNA DERECHA -->
-        <div class="col-right">
+</div>
 
-            <!-- HABILIDADES Y COMPETENCIAS -->
-            <section>
-                <h2>Habilidades y Competencias</h2>
-                
-                <div class="skill">
-                    <div class="skill-top"><span>Pensamiento lógico y resolución de problemas</span><span>90%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Trabajo en equipo y colaboración</span><span>85%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Orientación a objetivos</span><span>92%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 92%"></div></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Pensamiento crítico y análisis</span><span>88%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 88%"></div></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Comunicación efectiva</span><span>80%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Creatividad e innovación</span><span>85%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Gestión del tiempo</span><span>78%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 78%"></div></div>
-                </div>
-            </section>
+<script>
+// ANIMACIONES SCROLL
+const sections = document.querySelectorAll("sention");
 
-            <!-- IDIOMAS -->
-            <section>
-                <h2>Idiomas</h2>
-                <ul class="languages">
-                    <li><strong>Español</strong> — Nativo</li>
-                    <li><strong>Inglés</strong> — Intermedio (B1 / B2)</li>
-                </ul>
-            </section>
-
-            <!-- HABILIDADES TÉCNICAS -->
-            <section>
-                <h2>Habilidades Técnicas</h2>
-                <div class="skill">
-                    <div class="skill-top"><span>HTML / CSS</span><span>90%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>JavaScript</span><span>75%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Python</span><span>70%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 70%"></div></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>SQL / Bases de Datos</span><span>65%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 65%"></div></div>
-                </div>
-                <div class="skill">
-                    <div class="skill-top"><span>Git / GitHub</span><span>80%</span></div>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
-                </div>
-            </section>
-
-            <!-- INTERESES -->
-            <section>
-                <h2>Intereses</h2>
-                <div class="interests">
-                    <span>Programación</span>
-                    <span>Tecnología</span>
-                    <span>Videojuegos</span>
-                    <span>IA</span>
-                    <span>Lectura</span>
-                    <span>Música</span>
-                    <span>Deportes</span>
-                </div>
-            </section>
-
-        </div>
-
-    </div>
+window.addEventListener("scroll", () => {
+    sections.forEach(sec => {
+        const top = sec.getBoundingClientRect ().top;
+        if (top < window.innerHeight - 100) {
+            sec.classList.add("visible");
+        }
+    });
+});
+</script>
 
 </body>
 </html>
+
